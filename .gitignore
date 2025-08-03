@@ -206,3 +206,4 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 /data # yeh dekho dvc add data krke yeh aaya hai 
+/data
