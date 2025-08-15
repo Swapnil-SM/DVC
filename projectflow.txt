@@ -3,14 +3,14 @@
 3. Do a git add-commit-push before initializing DVC.
 4. Now do `dvc init` (creates `.dvcignore`, `.dvc`)
 5. Now do `mkdir S3` (creates a new S3 directory)
-6. Now we do `dvc remote add -d myremote S3`
-7. Next `dvc add data/`
+6. Now we do `dvc remote add -d myremote S3`(just tells DVC where your remote storage is and sets it as the default.)
+7. Next `dvc add data/`    #dvc add data/ tells DVC to start tracking the data/ folder (or file) for versioning, just like Git tracks code.It creates a small .dvc file as a pointer, while the actual data stays outside Git.
    - Now it will ask to do:
      git rm -r --cached 'data'
      git commit -m "stop tracking data"
      Because initially we were tracking `data/` folder from git, so now we remove it for DVC to handle.
 8. Again we do `dvc add data/` (creates `data.dvc`) then
-   git add .gitignore data.dvc
+   git add data.dvc.gitignore
 9. Now `dvc commit` and then `dvc push`
 10. Do a git add-commit-push to mark this stage as first version of data.
 11. Now make changes to `mycode.py` to append a new row in data, check changes via `dvc status`.
@@ -29,7 +29,7 @@ Extension – DVC has to be installed
 Example commands:
 mkdir %temp%/dvcstore    # or mkdir temp
 dvc remote add -d myremote %temp%/dvcstore
-# or
+# or 
 dvc remote add -d myremote temp
 
 dvc add data/   # creates data.dvc
@@ -39,6 +39,9 @@ dvc push
 dvc status
 git status
 dvc push
+
+
+
 git log --oneline
 git checkout <hash>   # or git checkout master
 git pull
